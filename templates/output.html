@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Additional Analysis</title>
     <style>
+        /* .logo{
+            background-image: url('msu-wordmark-green.svg');
+            width: 200px;
+            height: 200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0 auto;
+        } */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
@@ -14,7 +22,7 @@
         }
 
         h1 {
-            background-color: #4CAF50;
+            background-color: #22453a;
             color: white;
             padding: 10px;
             text-align: center;
@@ -25,7 +33,7 @@
             font-weight: bold;
             font-size: 1.2em;
             margin-top: 20px;
-            color: #4CAF50;
+            color: #22453a;
         }
 
         table {
@@ -45,7 +53,7 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color: #22453a;
             color: white;
         }
 
@@ -60,7 +68,7 @@
         
         .button-container input[type="button"], .button-container .loading-button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #22453a;
             border: none;
             color: white;
             font-size: 16px;
@@ -160,6 +168,11 @@
     </style>
 </head>
 <body>
+    <!-- <div class="logo"></div> -->
+    <div class="msulogo">
+        <center><img src="https://logos-world.net/wp-content/uploads/2022/07/Michigan-State-University-Primary-Logo.png" 
+        alt="MSU Logo" width="400" height="200" ></center>
+    </div>
     <h1>Output Tables for your Inputs</h1>
     <ul>
         {% set output_count = 0 %}
@@ -196,22 +209,22 @@
     </div>
 
     <div id="economicAnalysisForm">
-        <label for="p1">What is the price for softwood and sawlog?</label>
+        <label for="p1">What is the price for softwood sawlog?</label>
         <input type="number" id="p1" name="p1" placeholder="Enter price" required>
         
-        <label for="p2">What is the price for softwood and pulpwood?</label>
+        <label for="p2">What is the price for softwood pulpwood?</label>
         <input type="number" id="p2" name="p2" placeholder="Enter price" required>
         
-        <label for="p3">What is the price for softwood and fuelwood?</label>
+        <label for="p3">What is the price for softwood fuelwood?</label>
         <input type="number" id="p3" name="p3" placeholder="Enter price" required>
         
-        <label for="p4">What is the price for hardwood and sawlog?</label>
+        <label for="p4">What is the price for hardwood sawlog?</label>
         <input type="number" id="p4" name="p4" placeholder="Enter price" required>
         
-        <label for="p5">What is the price for hardwood and pulpwood?</label>
+        <label for="p5">What is the price for hardwood pulpwood?</label>
         <input type="number" id="p5" name="p5" placeholder="Enter price" required>
         
-        <label for="p6">What is the price for hardwood and fuelwood?</label>
+        <label for="p6">What is the price for hardwood fuelwood?</label>
         <input type="number" id="p6" name="p6" placeholder="Enter price" required>
         
         <label for="interestRate">What is the interest rate? (%)</label>
@@ -222,9 +235,11 @@
 
         <label for="unit">Select the unit for carbon price:</label>
         <select id="unit" name="unit" required>
-            <option value="$mbf">$/mbf</option>
+            <!-- <option value="$MBF(international)">$/MBF(international)</option>
+            <option value="$MBF(Doyle)">$/MBF(Doyle)</option>
+            <option value="$MBF(Scribner)">$/MBF(Scribner)</option>
             <option value="$cords">$/cords</option>
-            <option value="$tons">$/tons</option>
+            <option value="$tons">$/tons</option> -->
             <option value="$cubicfoot">$/cubic foot</option>
         </select>
 
@@ -287,5 +302,15 @@
 
         
     </script>
+    
+    <hr>
+
+
+    <p style="text-align: center;">Disclaimer: This tool is adapted from the <a href="https://docs.google.com/spreadsheets/d/1BRjiwdrDe0Q1vLFywMZwUALwNMOBYAPLrS_CWeiFilc/edit?usp=sharing" target="_blank">USDA Excel Document</a>
+    following the methods for <a href="https://www.usda.gov/oce/entity-scale-ghg-methods/chapter-5" target="_blank">Manage Forest Systems</a> developed by US Forest Services.</p> 
+    <p style="text-align: center;"> We are not responsible for quantifying the carbon sequestration and GHG emission estimations.</p>
+    
+    <p style="text-align: center;">Please click the link for detailed method on Quantifying Greenhouse Gas Sources and Sinks for Managed Forest Systems.</p>
+    
 </body>
 </html>
