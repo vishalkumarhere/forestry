@@ -6,6 +6,14 @@
     <title>Forest Carbon Tool</title>
 
     <style>
+        /* .logo{
+            background-image: url('Michigan-State-University-Primary-Logo.png');
+            width: 200px;
+            height: 200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0 auto;
+        } */
         /* Existing CSS unchanged */
         body {
             font-family: 'Arial', sans-serif;
@@ -16,7 +24,7 @@
         }
 
         h1 {
-            background-color: #4CAF50;
+            background-color: #22453a;
             color: white;
             padding: 10px;
             text-align: center;
@@ -52,7 +60,7 @@
 
         .button-container input[type="button"], .button-container .loading-button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #22453a;
             border: none;
             color: white;
             font-size: 16px;
@@ -139,7 +147,7 @@
         }
 
         #forestDataTable th {
-            background-color: #4CAF50;
+            background-color: #22453a;
             color: white;
         }
 
@@ -153,8 +161,12 @@
     </style>
 </head>
 <body>
+    <!-- <div class="logo"></div> -->
+    <div class="msulogo">
+        <center><img src="https://logos-world.net/wp-content/uploads/2022/07/Michigan-State-University-Primary-Logo.png" 
+        alt="MSU Logo" width="400" height="200" ></center>
     <form id="forestForm">
-        <h1>Forest Carbon Tool</h1>
+        <h1>Forest Carbon Tool (Under Development)</h1>
         <label for="name">Please enter name of the run:</label>
         <input type="text" id="name" name="name" placeholder="Name" required />
 
@@ -406,5 +418,15 @@
         });
 
     </script>
+    
+    <hr>
+
+
+    <p style="text-align: center;">Disclaimer: This tool is adapted from the <a href="https://docs.google.com/spreadsheets/d/1BRjiwdrDe0Q1vLFywMZwUALwNMOBYAPLrS_CWeiFilc/edit?usp=sharing" target="_blank">USDA Excel Document</a>
+    following the methods for <a href="https://www.usda.gov/oce/entity-scale-ghg-methods/chapter-5" target="_blank">Manage Forest Systems</a> developed by US Forest Services.</p> 
+    <p style="text-align: center;"> We are not responsible for quantifying the carbon sequestration and GHG emission estimations.</p>
+    
+    <p style="text-align: center;">Please click the link for detailed method on Quantifying Greenhouse Gas Sources and Sinks for Managed Forest Systems.</p>
+    
 </body>
 </html>
