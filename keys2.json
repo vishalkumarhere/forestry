@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "msu-forestry-2",
+  "private_key_id": "d8e1595d5318238f5d5103b69480debe18064c76",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxfFqJJlpni2HW\nU2yuHesB2PdFXoVyHaWRSOfpootk9WfErrp3l+w36gB7Cnr0Wr9om6wl/00bc01t\nm4fy7fbPRH9fDo0rV/S4mwItV8Go6V2L4cgUm4+K3rr1YN/0AprzwsR6sqb/mXkG\nyJRv11zC6eMZfSe9yoq53UD4YKetIdI7qH+AWrRcSBsS2BOyVlohoT9upvaKme8/\noPgeCYFMvVoUJo1viP5XiNAQpnCKgQ1e1zxtCHjsYR7Xn5ZWPek9BBZXR49TwG/G\nRMOd2P51MXSXpfpc21q2LzRTWWqn06nb6KpYfLllvAcbXQa95EeTFVOQyN+SFvJK\nhKz88dYtAgMBAAECggEALUcrFZf6MjYlpHat4BFz1YnTMxg09PLJPTIbL8guxXex\nnERy/3V7ZpxEuR7oVRQdhoNIPH1P33PfydmGqhu4/hFcaRSeQPN0U+//cy/TENNP\n8RKNZ2x0BxphGZ44I9jSTONgGmkfH0+4x1k+PPX1DSh7rhH2pH1aPKZMH9EQlaMA\noHWSeC7H4w/0iXysQ+86HdnHv/hHrBQSW2LYiESid9CRPTdza7bZgB86YHx0Psd1\nc1DoaiZYtPcT2IdZg5i1LOVsaXryZLuGZilBMT/+PqDSRIUA161Pv11UuoUCzDLX\ngia5PVl2m1OSzcYLQPnH5kxuB/HL4qazz0vWvRqxRQKBgQDwiDS+RHt21VSVJVzx\nmXoiKphmyavakS3IkQ1A8HJA78j968A7zUcePYybHR++6VMpMahdEJisEvsQEUvX\nZg6inDca5HjmBgA4rafYhwty11aVopglt/5chujInh2Yzz/ZRqmfW1lhZTjZn3Av\nEm9NhikMWQP/iEdJNF1Hm5LjZwKBgQC85j0fe4UVKtZQa8kqocGuqWuFu/awilah\nlW6GLZ5vztA9BESvJCTq0f4g5aQNCceO6GlqAnewInSD2w51cRuOwNrN3clCF0mf\nVEYEi4nEahGsg7nyRweJydUYhUPyCzRB7+9qOlQ8QpC2H1ItI/3pxc8yIKp+zP+g\nLM478nmxSwKBgGvK/qgOFK6KqB824VI8j6lkIWxfEK8gxL3Pk3r4xpsnWpHA5yNl\nuWtp9etFwAZUljot0N/0IhdrYiwvNCfRytlA3Mkmfq/HHK5J1KCK1KygqGLivQCa\nVlms9AGEKotixaBftIB/9axaKoIMm7/cqRi6+QZZlhscPaYm227N36QdAoGASUzy\nlP/icYdQ6J4azr88ICHABoIcxP65hTQuUkTrgSl4puS8HlZhOPnJqkxSL3kHBg5r\nsWZJuYB1RCFB6BK/BdMSVOZmTY4p1HjoPqVDDYO3XgEzq68iXraCSWSVLBxq59dK\nSSdfPo76BqH6ymd4BTnsH+CLKG82FpqsYJjD3icCgYEAmef94CRtx6b1pWNbFl34\n/54ORfRvpYslDReHjbiX/iuiQba48ipEm+F1Q+aKM1DwZaSVwdoZ86izYWp5i1x4\nA9zMuzdc75l+J5HriTEj7hkeC3Z5s3G5NevDstjn0lYEk+raTO7NJcROWOCJgv2Y\nuA1BY0lpxbB0pmXtCF5NL+0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "msu-forestry-gsheet@msu-forestry-2.iam.gserviceaccount.com",
+  "client_id": "103345795373586199392",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/msu-forestry-gsheet%40msu-forestry-2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

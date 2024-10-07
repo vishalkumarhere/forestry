@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Carbon Tool</title>
+
+    <style>
+        /* Existing CSS unchanged */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container input[type="button"], .button-container .loading-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button-container input[type="button"]:hover, .button-container .loading-button:hover {
+            background-color: #45a049;
+        }
+
+        .button-container .loading-button {
+            position: relative;
+        }
+
+        .loading-button span {
+            display: inline-block;
+            transition: 0.5s;
+        }
+
+        .loading-button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -10px;
+            transition: 0.5s;
+        }
+
+        .loading-button:hover span {
+            padding-right: 20px;
+        }
+
+        .loading-button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .loading-button:active {
+            background: #45a049;
+        }
+
+        .button--loading .button__text {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .button--loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+        }
+
+        @keyframes button-loading-spinner {
+            from {
+                transform: rotate(0turn);
+            }
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
+        #forestDataTable {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #forestDataTable th, #forestDataTable td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #forestDataTable th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #forestDataTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="forestForm">
+        <h1>Forest Carbon Tool</h1>
+        <label for="name">Please enter name of the run:</label>
+        <input type="text" id="name" name="name" placeholder="Name" required />
+
+        <label for="area">Area subject to management activity or area of stratum (in acres)</label>
+        <input type="number" id="area" name="area" placeholder="Area" required />
+
+        <label for="region">U.S. Region: </label>
+        <select id="region" name="region" required>
+            <option value="1">Select a Region </option>
+            <option value="2">Central States </option>
+            <option value="3">Great Plains </option>
+            <option value="4">Northeast </option>
+            <option value="5">Northern Lake States </option>
+            <option value="6">Pacific Northwest Eastside </option>
+            <option value="7">Pacific Northwest Westside </option>
+            <option value="8">Pacific Southwest </option>
+            <option value="9">Rocky Mountain North </option>
+            <option value="10">Rocky Mountain South </option>
+            <option value="11">South Central </option>
+            <option value="12">Southeast </option>
+        </select>
+
+        <label for="forestTypeGroup">Forest Type Group (if reforesting, planned forest type group): </label>
+        <select id="forestTypeGroup" name="forestTypeGroup" required>
+            <option value="1">Select a forest type group </option>
+            <option value="2">Aspen / birch group </option>
+            <option value="3">Elm / ash / cottonwood group </option>
+            <option value="4">Exotic hardwoods group </option>
+            <option value="5">Maple / beech / birch group </option>
+            <option value="6">Oak / gum / cypress group </option>
+            <option value="7">Oak / hickory group </option>
+            <option value="8">Oak / pine group </option>
+            <option value="9">Other hardwoods group </option>
+            <option value="10">Exotic softwoods group </option>
+            <option value="11">Loblolly / shortleaf pine group </option>
+            <option value="12">Other eastern softwoods group </option>
+            <option value="13">White / red / jack pine group </option>
+            <option value="14">not sure, very few trees (ie, nonstocked) </option>
+            <option value="15">predominantly hardwood species, type not known </option>
+            <option value="16">predominantly softwood species, type not known </option>
+            <option value="17">Unknown </option>
+        </select>
+
+        <label for="origin">Planted or Natural Forest Origin: </label>
+        <select id="origin" name="origin" required>
+            <option value="1">Select origin type </option>
+            <option value="2">Planted </option>
+            <option value="3">Natural </option>
+            <option value="4">Unknown </option>
+        </select>
+
+        <label for="age">Age Class: </label>
+        <select id="age" name="age" required>
+            <option value="1">Select an age class </option>
+            <option value="2">0-20 years </option>
+            <option value="3">21-40 years </option>
+            <option value="4">41-60 years </option>
+            <option value="5">61-80 years </option>
+            <option value="6">81-100 years </option>
+            <option value="7">100+ years </option>
+            <option value="8">Unknown </option>
+        </select>
+
+        <label for="harvestYearsBusiness">How many years from now will you harvest under a business as usual scenario? </label>
+        <select id="harvestYearsBusiness" name="harvestYearsBusiness" required>
+            <option value="1">Select the number of years from now when you plan to harvest </option>
+            <option value="2">0 </option>
+            <option value="3">5 </option>
+            <option value="4">10 </option>
+            <option value="5">15 </option>
+            <option value="6">20 </option>
+            <option value="7">25 </option>
+            <option value="8">30 </option>
+            <option value="9">35 </option>
+            <option value="10">40 </option>
+            <option value="11">45 </option>
+            <option value="12">50 </option>
+        </select>
+
+        <label for="harvestYearsER">How many years from now will you harvest if you extend rotation? (must be greater than BAU date) </label>
+        <select id="harvestYearsER" name="harvestYearsER" required>
+            <option value="1">Select the number of years from now when you plan to harvest </option>
+            <option value="2">0 </option>
+            <option value="3">5 </option>
+            <option value="4">10 </option>
+            <option value="5">15 </option>
+            <option value="6">20 </option>
+            <option value="7">25 </option>
+            <option value="8">30 </option>
+            <option value="9">35 </option>
+            <option value="10">40 </option>
+            <option value="11">45 </option>
+            <option value="12">50 </option>
+        </select>
+
+        <div class="button-container">
+            <input type="button" value="Add/Submit" onclick="addEntryAndShowTable();">
+            <input type="button" value="Clear" onclick="ClearFields();">
+        </div>
+    </form>
+    <div id="tableContainer" class="hidden">
+        <h2>Forest Data Table</h2>
+        <table id="forestDataTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Area</th>
+                    <th>Region</th>
+                    <th>Forest Group Type</th>
+                    <th>Origin</th>
+                    <th>Age</th>
+                    <th>Years under Business</th>
+                    <th>Years Extended Rotation</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table body content will be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="button-container">
+        <!input type="button" value="Produce Output" onclick="redirectToOutput();">
+        <button type="button" class="loading-button" id="submit-button">
+            <span class="button__text">Produce Output</span>
+        </button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var forestData = [];
+        let isProcessing = false;
+        let firstRegion = null;
+
+        function addEntryAndShowTable() {
+            // Gather form data
+            var formData = {
+                name: document.getElementById("name").value,
+                area: document.getElementById("area").value,
+                region: document.getElementById("region").options[document.getElementById("region").selectedIndex].text,
+                regionValue: document.getElementById("region").value,
+                forestTypeGroup: document.getElementById("forestTypeGroup").options[document.getElementById("forestTypeGroup").selectedIndex].text,
+                origin: document.getElementById("origin").options[document.getElementById("origin").selectedIndex].text,
+                age: document.getElementById("age").options[document.getElementById("age").selectedIndex].text,
+                harvestYearsBusiness: document.getElementById("harvestYearsBusiness").options[document.getElementById("harvestYearsBusiness").selectedIndex].text,
+                harvestYearsER: document.getElementById("harvestYearsER").options[document.getElementById("harvestYearsER").selectedIndex].text
+            };
+
+            if (firstRegion === null) {
+                firstRegion = formData.regionValue;
+            } else if (formData.regionValue !== firstRegion) {
+                alert("Please enter the same region for all the entries. To perform, economic analysis for different regions, please do it separately.");
+                return;
+            }
+
+            // Validate all fields
+            if (!document.getElementById("forestForm").checkValidity()) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            // Create table row
+            var newRow = document.createElement("tr");
+            newRow.innerHTML = "<td>" + formData.name + "</td><td>" + formData.area + "</td><td>" + formData.region + "</td><td>" + formData.forestTypeGroup +
+            "</td><td>" + formData.origin + "</td><td>" + formData.age + "</td><td>" +
+            formData.harvestYearsBusiness + "</td><td>" + formData.harvestYearsER + "</td>" +
+            "<td><button onclick='deleteRow(" + (forestData.length - 1) + ")'>Delete</button></td>";
+            document.getElementById("tableBody").appendChild(newRow); // Append new row to table body
+
+            // Show the table
+            document.getElementById("tableContainer").classList.remove("hidden");
+            forestData.push(formData);
+
+            // Clear form fields for the next entry
+            ClearFields();
+
+            isProcessing = true;
+            fetch('/submit_form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ forestData: forestData, formData: formData }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                isProcessing = false;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        }
+
+        function deleteRow(index) {
+            // Delete the row from the table
+            document.getElementById("tableBody").deleteRow(index);
+
+            // Remove the corresponding data from the array
+            forestData.splice(index, 1);
+
+            // Send the index of the deleted row to the backend
+            fetch('/delete_row', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ deletedRowIdx: index }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                // Optionally, do something with the response from the server
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function ClearFields() {
+            document.getElementById("name").value = "";
+            document.getElementById("area").value = "";
+            // Do not clear the region field if an entry has been made
+            if (firstRegion === null) {
+                document.getElementById("region").value = "1";
+            }
+            document.getElementById("forestTypeGroup").value = "1";
+            document.getElementById("origin").value = "1";
+            document.getElementById("age").value = "1";
+            document.getElementById("harvestYearsBusiness").value = "1";
+            document.getElementById("harvestYearsER").value = "1";
+        }
+
+        function produceOutput() {
+            if (isProcessing) {
+                // Keep the button in the loading state if processing is not complete
+                $('#submit-button').addClass("button--loading");
+                setTimeout(produceOutput, 1000); // Check again after 1 second
+            } else {
+                // Redirect to the output page if processing is complete
+                $('#submit-button').removeClass("button--loading");
+                location.href = '/output';
+            }
+        }
+        
+        $('#submit-button').click(function() {
+            $(this).addClass("button--loading");
+            produceOutput();
+        });
+
+    </script>
+</body>
+</html>
